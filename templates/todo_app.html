@@ -1,0 +1,54 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href=" {% static '/css/style.css' %} ">
+    <title>Todolist</title>
+</head>
+<body>
+        <div class="container">
+            <div class="todo-app">
+                <h2>To Do List</h2>
+            <form action="/" method="post">
+                {% csrf_token %}
+                        <div class="row">
+                            {% comment %} <input type="text" placeholder="add your task" name="todo"> {% endcomment %}
+                            {{form.task}}
+                            <button type="submit" >Add Task</button>
+                        </div>
+            </form>
+                
+                    {% for todo in task %}
+                    <form action="{% url 'todo:checklist' todo.id %}" method="post">
+                    {% csrf_token %}
+                    <ul id="list-container">
+                    <div class="task">
+                        <div>
+                    <input type="checkbox"  id="" name="tasks" value="{{todo.id}}" >
+                        </div>
+                        <div>
+                            <li>{{todo.task}}
+                        </div>
+                            <div>
+                                <a href="{% url 'todo:update_task' todo.id %}">
+                                    <img src="{% static '/images/edit.svg' %}" alt="Edit" />
+                                </a>    
+                            </div>
+                            <div>
+                                <a href="{% url 'todo:delete' todo.id%}"><img src="{% static '/images/delete.svg' %}" alt="delete" /></a>
+                            </div>
+                        </li>
+                    </div>
+                    </ul>
+                    {%endfor%}
+                    <ul>
+                        <button type="submit" id="delete-btn">Delete selected</button>
+
+                    </ul>
+                </form>
+            </div>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% load static%}
+<form action="" method="post">
+<link rel="stylesheet" type="text/css" href=" {% static '/css/style.css' %} ">
+<div class="container">
+    <div class="todo-app">
+        <h2>update item</h2>
+    {% csrf_token %}
+    <div class="row">
+                    {{form.task}}
+                    <button type="submit" >update task</button>
+    </div>
+    </form>
+</div>
+</div>

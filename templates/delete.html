@@ -1,0 +1,14 @@
+{% load static%}
+<form action="" method="post">
+<link rel="stylesheet" type="text/css" href=" {% static '/css/style.css' %} ">
+<div class="container">
+    <div class="todo-app">
+        <h2>delete item</h2>
+    {% csrf_token %}
+    <div class="row">
+                    <label >are you sure u want to delete item  "{{task}}"</label> 
+                    <button type="submit" >delete task</button>
+    </div>
+    </form>
+</div>
+</div>
